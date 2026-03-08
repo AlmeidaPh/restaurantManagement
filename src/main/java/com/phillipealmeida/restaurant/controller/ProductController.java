@@ -15,7 +15,7 @@ import java.util.Optional;
 public class ProductController {
     private ProductService productService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/product/{id}")
     public ResponseEntity<Optional<Product>> searchProductForId(@PathVariable Long id) {
         Optional<Product> product = productService.searchProductForId(id);
         return ResponseEntity.ok(product);
