@@ -11,7 +11,7 @@ O projeto foi desenvolvido como estudo de desenvolvimento back-end utilizando Ja
 - Spring Data JPA
 - Maven
 - Docker
-- PostgreSQL / MySQL
+- PostgreSQL
 - REST API
 
 ## Estrutura do Projeto
@@ -48,16 +48,17 @@ Ou com Docker: docker-compose up
 
 ## Exemplos de Endpoints
 
-### Listar produtos
-GET /products
-
-
 ### Criar produto
 POST /products
 
+### Listar produtos
+GET /products
 
 ### Buscar produto por ID
 GET /products/{id}
+
+### Deletar produto por ID
+DELETE /products/{id}
 
 
 ## Objetivo do Projeto

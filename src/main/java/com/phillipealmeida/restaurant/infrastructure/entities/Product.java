@@ -1,8 +1,10 @@
-package com.phillipealmeida.restaurant.infrastructure.entitys;
+package com.phillipealmeida.restaurant.infrastructure.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Products_Table")
@@ -18,10 +20,11 @@ public class Product {
     private String description;
 
     @Column(name = "price")
-    private float price;
+    private BigDecimal price;
 
+    @CreationTimestamp
     @Column(name = "created_at")
-    private LocalDate created_at;
+    private LocalDateTime created_at;
 
     public Long getId() {
         return id;
@@ -39,11 +42,11 @@ public class Product {
         this.name = name;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -55,11 +58,11 @@ public class Product {
         this.description = description;
     }
 
-    public LocalDate getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDate created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 }

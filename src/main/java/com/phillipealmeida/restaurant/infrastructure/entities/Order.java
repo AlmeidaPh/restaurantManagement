@@ -1,8 +1,9 @@
-package com.phillipealmeida.restaurant.infrastructure.entitys;
+package com.phillipealmeida.restaurant.infrastructure.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Orders_Table")
@@ -15,10 +16,10 @@ public class Order {
     private String status;
 
     @Column(name = "total_amount")
-    private float totalAmount;
+    private BigDecimal totalAmount;
 
     @Column(name = "created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     public Long getId(){
         return id;
@@ -34,17 +35,17 @@ public class Order {
         this.status = status;
     }
 
-    public float getTotalAmount(){
+    public BigDecimal getTotalAmount(){
         return totalAmount;
     }
-    public void setTotalAmount(float totalAmount){
+    public void setTotalAmount(BigDecimal totalAmount){
         this.totalAmount = totalAmount;
     }
 
-    public LocalDate getCreatedAt(){
+    public LocalDateTime getCreatedAt(){
         return createdAt;
     }
-    public void setCreatedAt(LocalDate createdAt){
+    public void setCreatedAt(LocalDateTime createdAt){
         this.createdAt = createdAt;
     }
 
