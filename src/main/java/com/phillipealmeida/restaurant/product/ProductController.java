@@ -1,12 +1,10 @@
-package com.phillipealmeida.restaurant.controller;
+package com.phillipealmeida.restaurant.product;
 
-import com.phillipealmeida.restaurant.business.service.ProductService;
-import com.phillipealmeida.restaurant.infrastructure.entities.Product;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -18,24 +16,28 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
-        Product saveProduct = productService.saveProduct(product);
+    public ResponseEntity<ProductResponseDTO> saveProduct(@Valid @RequestBody ProductRequestDTO productRequestDTO){
+        ProductResponseDTO saveProduct = productService.saveProduct(productRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveProduct);
     }
 
     @GetMapping("/products")
-    public List<Product> findAll(){
+    public List<ProductResponseDTO> findAll(){
         return productService.findAll();
     }
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<Optional<Product>> searchProductForId(@PathVariable Long id) {
-        Optional<Product> product = productService.searchProductForId(id);
-        return ResponseEntity.ok(product);
+    public ResponseEntity<ProductResponseDTO> findById(@PathVariable Long id) {
+        return productService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/products/{id}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable Long id){
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
+        if (productService.findById(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }

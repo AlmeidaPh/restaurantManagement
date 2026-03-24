@@ -1,4 +1,4 @@
-package com.phillipealmeida.restaurant.infrastructure.entities;
+package com.phillipealmeida.restaurant.order;
 
 import jakarta.persistence.*;
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "Orders_Table")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "status")

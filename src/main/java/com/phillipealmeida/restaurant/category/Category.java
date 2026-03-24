@@ -1,4 +1,4 @@
-package com.phillipealmeida.restaurant.infrastructure.entities;
+package com.phillipealmeida.restaurant.category;
 
 import jakarta.persistence.*;
 
@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "Category_Table")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
